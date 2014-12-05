@@ -10,8 +10,12 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".main"
+            android:name="com.example.mitchtz.webview.main"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.mitchtz.webview.MainScreenActivity"
+            android:label="@string/title_activity_main_screen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

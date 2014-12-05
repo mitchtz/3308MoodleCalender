@@ -83,4 +83,9 @@ public class main extends Activity {
             }
         });
     }
+
+    /** Called when the user clicks the Send button */
+    public void sendMessage(View view) {
+        // Do something in response to button
+    }
 }
