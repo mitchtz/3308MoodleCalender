@@ -13,24 +13,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.mitchtz.webview.Assignment;
+import com.example.mitchtz.webview.EventDBHlpr;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Assignment_List extends Activity {
 
-
-    List<String> AssignList=new ArrayList<String>();  //List of ID's to assignments ID's will act as a handle to the data
+    EventDBHlpr db=new EventDBHlpr(this);
+    List<Assignment> AssignList=db.getAssignments();  //List of ID's to assignments ID's will act as a handle to the data
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Assignment test_assignment_1= new Assignment("Test 1","CSCI3155","testing","12-5-14");
-        AssignList.add(test_assignment_1.list_val);
-        AssignList.add(test_assignment_1.list_val);
-        AssignList.add(test_assignment_1.list_val);
-        AssignList.add(test_assignment_1.list_val);
+        AssignList.add(test_assignment_1);
+        AssignList.add(test_assignment_1);
+        AssignList.add(test_assignment_1);
+        AssignList.add(test_assignment_1);
         //setContentView(R.layout.activity_assignment__list);
         setContentView(R.layout.assignment_list);
         final Context context = this;
