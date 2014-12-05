@@ -89,3 +89,4 @@ public class main extends Activity {
         // Do something in response to button
     }
 }
+//private class
