@@ -1,5 +1,11 @@
 package com.example.mitchtz.webview;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
@@ -8,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,12 +24,67 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.webkit.WebViewClient;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.json.JSONObject;
+import org.json.JSONException;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
 import java.io.File;
 
 
 public class main extends Activity {
     WebView ourBrow;
 
+    public String GetAuthToken(String username,String password){
+        InputStream is=null;
+        String Auth=null;
+        JSONObject jobj=null;
+        String service="moodle_mobile_app";
+        String url ="moodle.cs.colorado.edu";
+
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+
+        params.add(new BasicNameValuePair("username", username));
+        params.add(new BasicNameValuePair("password", password));
+        params.add(new BasicNameValuePair("service", service));
+        try {
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(url);
+
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+
+            HttpResponse Response = httpClient.execute(httpPost);
+            HttpEntity httpEntity = Response.getEntity();
+            is= httpEntity.getContent();
+        }catch (Exception e) {
+            Log.e("HTTP", "Error in http connection " + e.toString());
+        }
+
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    is, "iso-8859-1"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            is.close();
+            jobj = new JSONObject(sb.toString());
+            Auth=jobj.getString("token");
+        } catch (Exception e) {
+            Log.e("Buffer Error", "Error converting result " + e.toString());
+        }
+
+
+
+        return Auth ;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
