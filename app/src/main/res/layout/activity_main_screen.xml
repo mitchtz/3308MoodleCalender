@@ -30,6 +30,7 @@
         android:id="@+id/events"
         android:layout_marginBottom="140dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="viewEvents"/>
 
 </RelativeLayout>

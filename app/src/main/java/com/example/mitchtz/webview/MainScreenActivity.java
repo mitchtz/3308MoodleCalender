@@ -44,4 +44,9 @@ public class MainScreenActivity extends Activity {
         Intent intent = new Intent(this, main.class);
         startActivity(intent);
     }
+
+    public void viewEvents(View view){
+        Intent intent = new Intent(this,Assignment_List.class);
+        startActivity(intent);
+    }
 }
