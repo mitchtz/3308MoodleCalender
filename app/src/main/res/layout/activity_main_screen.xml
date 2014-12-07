@@ -11,8 +11,9 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp" />
-     <!--Mitch's Activity gets called with this button -->
+        android:layout_marginTop="66dp"
+        android:textStyle="normal" android:textSize="50sp"/>
+     <!--Moodle Activity gets called with this button -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
         android:layout_above="@+id/events"
         android:layout_centerHorizontal="true"
         android:onClick="callMoodle" />
-    <!--Chris's Activity gets called with this button -->
+    <!--View Events Activity gets called with this button -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

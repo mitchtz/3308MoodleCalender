@@ -120,7 +120,7 @@ public class MainScreenActivity extends Activity {
 
     /** Called when the user clicks the Send button */
     public void callMoodle(View view) {
-        Intent intent = new Intent(this, main.class);
+        Intent intent = new Intent(this, DownloadCalendar.class);
         startActivity(intent);
     }
 
