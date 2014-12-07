@@ -20,9 +20,9 @@ import java.util.List;
 
 public class Assignment_List extends Activity {
 
-    EventDBHlpr db=new EventDBHlpr(this);
-    List<Assignment> AssignList=db.getAssignments();  //List of ID's to assignments ID's will act as a handle to the data
-
+    //EventDBHlpr db=new EventDBHlpr(this);
+   // List<Assignment> AssignList=db.getAssignments();  //List of ID's to assignments ID's will act as a handle to the data
+    List<Assignment> AssignList=new ArrayList<Assignment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class Assignment_List extends Activity {
         setContentView(R.layout.assignment_list);
         final Context context = this;
         ListView listview = (ListView) findViewById(R.id.assignments);
-        ArrayAdapter<Integer> adapter= new ArrayAdapter(this,android.R.layout.simple_list_item_1,AssignList);
+        EventAdapter adapter= new EventAdapter(this,R.layout.event_item,AssignList.toArray());
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -49,8 +49,8 @@ public class Assignment_List extends Activity {
                 */
 
                 //Dialog info to be displayed currently holder information
-                DialogBldr.setTitle("[assignment name]");
-                DialogBldr.setMessage("[Due Date]");
+                DialogBldr.setTitle(AssignList.get(position).Name+" Due: "+AssignList.get(position).Date);
+                DialogBldr.setMessage(AssignList.get(position).Description);
 
 
                 DialogBldr.setPositiveButton("OK",new DialogInterface.OnClickListener() {

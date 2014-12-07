@@ -10,10 +10,10 @@ public class Assignment {
         list_val=Class+" - "+Name+ " Due: "+ Date;
     }
 
-    private String Name;
-    private String Description;
-    private String Class;
-    private String Date;
+    public String Name;
+    public String Description;
+    public String Class;
+    public String Date;
 
     public Assignment(String name,String course, String description, String date){
         Date=date;
