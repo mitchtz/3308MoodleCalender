@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.DownloadListener;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.webkit.WebViewClient;
@@ -109,6 +110,13 @@ public class main extends Activity {
         ourBrow.setVerticalScrollBarEnabled(false);
         ourBrow.setHorizontalScrollBarEnabled(false);
         ourBrow.loadUrl("https://moodle.cs.colorado.edu/calendar/export.php");
+        ourBrow.setDownloadListener(new DownloadListener() {
+            public void onDownloadStart (String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
 
         ourBrow.setWebViewClient(new WebViewClient() {
             @Override
@@ -122,7 +130,9 @@ public class main extends Activity {
                 // handle different requests for different type of files
                 // this example handles downloads requests for .apk and .mp3 files
                 // everything else the webview can handle normally
-                if (url.endsWith(".ical")) {
+                boolean shouldOverride = false;
+                if (url.endsWith(".ics")) {
+                    shouldOverride = true;
                     Uri source = Uri.parse(url);
                     // Make a new request pointing to the .apk url
                     DownloadManager.Request request = new DownloadManager.Request(source);
@@ -141,14 +151,14 @@ public class main extends Activity {
                 }
                 // if there is a link to anything else than .apk or .mp3 load the URL in the webview
                 else view.loadUrl(url);
-                return true;
+               return shouldOverride;
             }
         });
     }
 
     /** Called when the user clicks the Send button */
     public void sendMessage(View view) {
+
         // Do something in response to button
     }
 }
-//private class
