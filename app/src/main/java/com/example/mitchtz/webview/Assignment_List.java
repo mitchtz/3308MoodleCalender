@@ -90,15 +90,16 @@ public class Assignment_List extends Activity {
         String classname = null;
         String description = null;
         String duedate = null;
-        String[][] events = new String[4][];
+        //String[][] events = new String[4][];
+        //Number of events
+        int eventNum = 0;
+        ArrayList<Assignment> events = new ArrayList<Assignment>();
         if (calendar != null) {
             //Jagged array, had to flip 90 degrees. events[0][event#] = Summary, [1] = Description, [2] = Categories, [3] = Dtstart
 
-            int eventNum = 0;
             //myCalendarString = "OPENED";
             for (Iterator i = calendar.getComponents().iterator(); i.hasNext(); ) {
                 Component component = (Component) i.next();
-                //myCalendarString = component.getName();
 
                 for (Iterator j = component.getProperties().iterator(); j.hasNext(); ) {
                     Property property = (Property) j.next();
@@ -126,14 +127,22 @@ public class Assignment_List extends Activity {
                         duedate = (duedate.substring(0, 4) + "-" + duedate.substring(4,6) + "-" + duedate.substring(6,8) + " at " + Integer.toString(duehour) + ":" + duedate.substring(11,13));
                     }
                 }
+                events.add(new Assignment(classname, title, description, duedate));
             }
         }
+        else {
+            events.add(new Assignment(classname, description, title, duedate));
+        }
 
-        Assignment test_assignment_1= new Assignment(title, classname, description, duedate);
-        AssignList.add(test_assignment_1);
-        AssignList.add(test_assignment_1);
-        AssignList.add(test_assignment_1);
-        AssignList.add(test_assignment_1);
+        ////Assignment test_assignment_1= new Assignment(title, classname, description, duedate);
+        ////AssignList.add(test_assignment_1);
+        for (Assignment event : events){
+            AssignList.add(event);
+        }
+
+        //AssignList.add(test_assignment_1);
+        //AssignList.add(test_assignment_1);
+        //AssignList.add(test_assignment_1);
         //setContentView(R.layout.activity_assignment__list);
         setContentView(R.layout.assignment_list);
         final Context context = this;
