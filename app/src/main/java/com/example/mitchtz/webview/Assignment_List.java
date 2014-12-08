@@ -90,7 +90,11 @@ public class Assignment_List extends Activity {
         String classname = null;
         String description = null;
         String duedate = null;
+        String[][] events = new String[4][];
         if (calendar != null) {
+            //Jagged array, had to flip 90 degrees. events[0][event#] = Summary, [1] = Description, [2] = Categories, [3] = Dtstart
+
+            int eventNum = 0;
             //myCalendarString = "OPENED";
             for (Iterator i = calendar.getComponents().iterator(); i.hasNext(); ) {
                 Component component = (Component) i.next();
@@ -114,7 +118,12 @@ public class Assignment_List extends Activity {
                     if (property.getName() == "DTSTART"){
                         //Time in format ("yyyyMMdd'T'HHmmss")
                         duedate = property.getValue();
-                        duedate = (duedate.substring(0, 3) + "-" + duedate.substring(4,5) + "-" + duedate.substring(6,7));
+                        int duehour = Integer.parseInt(duedate.substring(9, 11)) - 7;
+                        if (duehour < 0){
+                            duehour = 24 + duehour;
+                        }
+
+                        duedate = (duedate.substring(0, 4) + "-" + duedate.substring(4,6) + "-" + duedate.substring(6,8) + " at " + Integer.toString(duehour) + ":" + duedate.substring(11,13));
                     }
                 }
             }
