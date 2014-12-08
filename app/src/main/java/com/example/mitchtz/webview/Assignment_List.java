@@ -59,7 +59,6 @@ public class Assignment_List extends Activity {
         super.onCreate(savedInstanceState);
         File dir = Environment.getExternalStorageDirectory();
         File file = new File(dir, "icalexport.ics");
-        String myCalendarString = null;
         //File file = new File(Environment.getExternalStorageDirectory(), "/icalexport.ics");
         /*
         if(file.exists()){
@@ -87,7 +86,10 @@ public class Assignment_List extends Activity {
             e.printStackTrace();
         }
         //Iterate through calender object
-
+        String title = null;
+        String classname = null;
+        String description = null;
+        String duedate = null;
         if (calendar != null) {
             //myCalendarString = "OPENED";
             for (Iterator i = calendar.getComponents().iterator(); i.hasNext(); ) {
@@ -96,18 +98,29 @@ public class Assignment_List extends Activity {
 
                 for (Iterator j = component.getProperties().iterator(); j.hasNext(); ) {
                     Property property = (Property) j.next();
-                    myCalendarString += (property.getName() + ", " + property.getValue() + "|");
+                    //myCalendarString += (property.getName() + ", " + property.getValue() + "|");
                     if (property.getName() == "SUMMARY"){
                         //property.getValue() gets the summary of the event
+                        title = property.getValue();
+                    }
+                    if (property.getName() == "DESCRIPTION"){
+                        //property.getValue() gets the description
+                        description = property.getValue();
                     }
                     if (property.getName() == "CATEGORIES"){
                         //property.getValue() gets the name of the class
+                        classname = property.getValue();
+                    }
+                    if (property.getName() == "DTSTART"){
+                        //Time in format ("yyyyMMdd'T'HHmmss")
+                        duedate = property.getValue();
+                        duedate = (duedate.substring(0, 3) + "-" + duedate.substring(4,5) + "-" + duedate.substring(6,7));
                     }
                 }
             }
         }
 
-        Assignment test_assignment_1= new Assignment(myCalendarString,"-class-","-desc-","-duedate-");
+        Assignment test_assignment_1= new Assignment(title, classname, description, duedate);
         AssignList.add(test_assignment_1);
         AssignList.add(test_assignment_1);
         AssignList.add(test_assignment_1);
