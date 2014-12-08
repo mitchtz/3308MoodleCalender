@@ -57,11 +57,8 @@ public class Assignment_List extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        //Change title bar
-        getActionBar().setTitle("Moodle Events");
-        //Create file path to ical file
         File dir = Environment.getExternalStorageDirectory();
-        File file = new File(dir, "/Download/icalexport.ics");
+        File file = new File(dir, "icalexport.ics");
         //File file = new File(Environment.getExternalStorageDirectory(), "/icalexport.ics");
         /*
         if(file.exists()){
@@ -134,8 +131,6 @@ public class Assignment_List extends Activity {
             }
         }
         else {
-            classname = "No ical file found";
-            duedate = "Never";
             events.add(new Assignment(classname, title, description, duedate));
         }
 
@@ -145,6 +140,9 @@ public class Assignment_List extends Activity {
             AssignList.add(event);
         }
 
+        //AssignList.add(test_assignment_1);
+        //AssignList.add(test_assignment_1);
+        //AssignList.add(test_assignment_1);
         //setContentView(R.layout.activity_assignment__list);
         setContentView(R.layout.assignment_list);
         final Context context = this;

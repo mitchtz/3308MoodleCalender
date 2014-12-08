@@ -82,8 +82,9 @@ public class DownloadCalendar extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Change title bar
-        getActionBar().setTitle("Moodle Browser");
+
+
+
         //final DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
 
         final File destinationDir = new File(Environment.getExternalStorageDirectory(), getPackageName());
@@ -125,12 +126,6 @@ public class DownloadCalendar extends Activity {
                 // everything else the webview can handle normally
                 boolean shouldOverride = false;
                 if (url.endsWith(".ics")) {
-                    //Delete old file
-                    File oldDir = Environment.getExternalStorageDirectory();
-                    File oldFile = new File(oldDir, "/Download/icalexport.ics");
-                    if (oldFile.exists()){
-                        boolean deleted = oldFile.delete();
-                    }
                     shouldOverride = true;
                     Uri source = Uri.parse(url);
                     // Make a new request pointing to the .apk url
