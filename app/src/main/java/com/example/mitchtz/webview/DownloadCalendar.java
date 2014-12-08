@@ -109,6 +109,8 @@ public class DownloadCalendar extends Activity {
                 intent.setData(Uri.parse(url));
                 startActivity(intent);
                 finish();
+                return;
+                //startActivity(new Intent(this, MainScreenActivity.class));
             }
         });
 
@@ -143,6 +145,7 @@ public class DownloadCalendar extends Activity {
                     // get download service and enqueue file
                     DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                     manager.enqueue(request);
+
 
                 }
                 // if there is a link to anything else than .apk or .mp3 load the URL in the webview
