@@ -82,7 +82,8 @@ public class DownloadCalendar extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //Change title bar
+        getActionBar().setTitle("Browser");
 
 
         //final DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
