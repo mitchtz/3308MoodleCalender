@@ -131,7 +131,7 @@ public class Assignment_List extends Activity {
             }
         }
         else {
-            events.add(new Assignment(classname, description, title, duedate));
+            events.add(new Assignment(classname, title, description, duedate));
         }
 
         ////Assignment test_assignment_1= new Assignment(title, classname, description, duedate);
