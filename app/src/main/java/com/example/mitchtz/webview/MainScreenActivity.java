@@ -14,6 +14,8 @@ public class MainScreenActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+        //Change title bar
+        getActionBar().setTitle("Forget Me Not");
     }
 
 

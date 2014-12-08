@@ -124,11 +124,11 @@ public class main extends Activity {
                 // everything else the webview can handle normally
                 if (url.endsWith("weeknow")) {
                     Uri source = Uri.parse(url);
-                    // Make a new request pointing to the .apk url
+                    // Make a new request pointing to the .ical url
                     DownloadManager.Request request = new DownloadManager.Request(source);
                     // appears the same in Notification bar while downloading
                     request.setDescription("Downloading Calender");
-                    request.setTitle("calender.ics");
+                    request.setTitle("icalexport.ics"); //calender.ics
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                         request.allowScanningByMediaScanner();
                         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
