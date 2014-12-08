@@ -58,7 +58,7 @@ public class Assignment_List extends Activity {
 
         super.onCreate(savedInstanceState);
         //Change title bar
-        getActionBar().setTitle("");
+        getActionBar().setTitle("Moodle Events");
         //Create file path to ical file
         File dir = Environment.getExternalStorageDirectory();
         File file = new File(dir, "/Download/icalexport.ics");
